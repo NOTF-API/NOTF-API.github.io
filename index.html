@@ -9,25 +9,77 @@
         *{
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            user-select: none;
         }
         body{
             height: 100vh;
             width: 100vw;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            color: #fff;
             background-color: rgb(31, 31, 31);
         }
-        div{
-            text-align: center;
+		.words{
             line-height: 48px;
             font-size: 48px;
             height: 48px;
-            color: #fff;
+			width: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			border-right: 0.1em solid;
+			animation: wordType 4s steps(5) infinite,pointer .5s steps(8) infinite; 
+		}
+		@keyframes wordType{
+			0%{width: 0;}
+            21%{
+                width: 0;
+            }
+            60%{
+                width: 5.1em;
+            }
+            100%{width: 5.1em;}
+		}
+		@keyframes pointer{
+            0%{border-color: transparent;}
+			49%{border-color: transparent;}
+            51%{border-color: #fff;}
+			100%{border-color: #fff;}
+		}
+        .clearfix::after{
+            content: "";
+            display: block;
+            visibility: hidden;
+            width: 0;
+            clear: both;
+        }
+        .english{
+            height: 50px;
+            line-height: 50px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        footer{
+            position: absolute;
+            bottom: 0;
+            width: 50%;
+            text-align: center;
+            font-weight: normal;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    <div>Hello,World</div>
+    <div class="container words clearfix">
+        你好，世界
+    </div>
+    <div class="english">
+        Hello,World
+    </div>
+    <footer>
+        Copyright &copy; 2021 NOTF-API
+    </footer>
 </body>
 </html>
