@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0,user-scalable=0,maximum-scale=1.0,minimum-scale=1.0">
     <title>NOTF-API</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        body{
+
+        body {
+            font-size: 16px;
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -22,55 +29,99 @@
             color: #fff;
             background-color: rgb(31, 31, 31);
         }
-		.words{
-            line-height: 48px;
-            font-size: 48px;
-            height: 48px;
-			width: 0;
-			white-space: nowrap;
-			overflow: hidden;
-			border-right: 0.1em solid;
-			animation: wordType 4s steps(5) infinite,pointer .5s steps(8) infinite; 
-		}
-		@keyframes wordType{
-			0%{width: 0;}
-            21%{
+
+        a {
+            text-decoration: none;
+        }
+
+        .words {
+            line-height: 3rem;
+            font-size: 3rem;
+            height: 3rem;
+            width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.2rem solid;
+            animation: wordType 4s steps(5) infinite, pointer 1s steps(8) infinite;
+        }
+
+        @keyframes wordType {
+            0% {
                 width: 0;
             }
-            60%{
-                width: 5.1em;
+
+            10% {
+                width: 0;
             }
-            100%{width: 5.1em;}
-		}
-		@keyframes pointer{
-            0%{border-color: transparent;}
-			49%{border-color: transparent;}
-            51%{border-color: #fff;}
-			100%{border-color: #fff;}
-		}
-        .clearfix::after{
+
+            50% {
+                width: 15.3rem;
+            }
+
+            80% {
+                width: 15.3rem;
+            }
+
+            90% {
+                width: 0;
+            }
+        }
+
+        @keyframes pointer {
+            0% {
+                border-color: transparent;
+            }
+
+            45% {
+                border-color: transparent;
+            }
+
+            55% {
+                border-color: #fff;
+            }
+
+            100% {
+                border-color: #fff;
+            }
+        }
+
+        .clearfix::after {
             content: "";
             display: block;
             visibility: hidden;
             width: 0;
             clear: both;
         }
-        .english{
-            height: 50px;
-            line-height: 50px;
+
+        .english {
+            height: 3rem;
+            line-height: 3rem;
             color: rgba(255, 255, 255, 0.5);
         }
-        footer{
+
+        footer {
             position: absolute;
             bottom: 0;
             width: 50%;
             text-align: center;
             font-weight: normal;
-            font-size: 12px;
+            font-size: .75rem;
             color: rgba(255, 255, 255, 0.5);
+        }
+
+        .github-icon i {
+            display: block;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 2rem;
+            transition: color .5s;
+        }
+
+        .github-icon:hover i {
+            color: #fff;
         }
     </style>
 </head>
+
 <body>
     <div class="container words clearfix">
         你好，世界
@@ -79,7 +130,11 @@
         Hello,World
     </div>
     <footer>
+        <a class="github-icon" href="https://github.com/NOTF-API">
+            <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
         Copyright &copy; 2021 NOTF-API
     </footer>
 </body>
+
 </html>
