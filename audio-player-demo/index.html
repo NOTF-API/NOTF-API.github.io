@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>音乐播放器ver0.5.4</title>
+    <meta name="description" content="无框架编写的个性化音乐播放器">
+    <meta name="keywords" content="音乐播放器,Web开发,html,在线播放">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+    <!--强制IE11使用IE9模式，和底下的if IE配合以枪毙IE-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--[if IE]><script src="js/ie-not-support.js"></script><![endif]-->
+</head>
+
+<body oncontextmenu="self.event.returnValue=false">
+    <div id="app">
+        <div id="background"></div>
+        <audio src="" id="playerAudio"></audio>
+        <div class="header">
+            <button class="secondary-button" id="expandButton"><i class="fa fa-expand" aria-hidden="true"></i></button>
+            <div class="information">
+                <h1 id="title"></h1>
+                <i id="description"></i>
+                <p>
+                    <span id="artist"></span>
+                    -
+                    <span id="album"></span>
+                </p>
+            </div>
+            <button class="secondary-button" id="closeButton"><i class="fa fa-close" aria-hidden="true"></i></button>
+        </div>
+        <div class="main">
+            <div class="middle">
+                <div id="disk">
+                    <img src="image/singlecover.png" alt="disk" class="diskImage">
+                </div>
+                <div class="spectrumContainer">
+                    <canvas id="spectrum" width="600px" height="1000px"></canvas>
+                </div>
+                <div class="lyricContainer">
+                    <div id="lyric" class="active"></div>
+                </div>
+            </div>
+        </div>
+        <div id="progress"></div>
+        <div class="footer">
+            <div id="currentTime">00:00.00</div>
+            <div class="main-buttons">
+                <button class="secondary-button" id="playModeButton"><i class="fa fa-random"
+                        aria-hidden="true"></i></button>
+                <button class="secondary-button" id="FXToggleButton">FX</button>
+                <button class="main-button" id="lastButton"><i class="fa fa-step-backward"
+                        aria-hidden="true"></i></button>
+                <button class="main-button" id="playPauseButton"><i class="fa fa-play" aria-hidden="true"></i></button>
+                <button class="main-button" id="nextButton"><i class="fa fa-step-forward"
+                        aria-hidden="true"></i></button>
+                <button class="secondary-button active" id="lyricToggleButton">词</button>
+                <label>
+                    <input type="range" max="100" min="0" step="1" value="100" class="secondary-button"
+                        onclick="player.volume=this.value">
+                </label>
+            </div>
+            <div id="totalTime">00:00.00</div>
+        </div>
+    </div>
+</body>
+<script src="js/util.js"></script>
+<script src="js/demoPlayList.js"></script>
+<script src="js/player.js"></script>
+<script src="js/spectrum.js"></script>
+
+</html>
