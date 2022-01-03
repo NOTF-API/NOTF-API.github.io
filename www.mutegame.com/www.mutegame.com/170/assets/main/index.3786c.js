@@ -2528,7 +2528,7 @@ function hackInit(gamecore) {
                 }
             },
             superSize: {
-                name: "体型变大",
+                name: "体型变大一倍",
                 init() {
                     
                 },
@@ -2540,8 +2540,31 @@ function hackInit(gamecore) {
 
                 }
             },
+            miniSize: {
+                name: "体型缩小一倍",
+                init() {
+                    
+                },
+                open() {
+                    hack.g.playerNode.scaleX /= 2;
+                    hack.g.playerNode.scaleY /= 2;
+                },
+                close() {
+
+                }
+            },
+            superRotateSpeed: {
+                name: "超级旋转速度",
+                toggle:true,
+                open() {
+                    hack.g.rotSpeed=3000
+                },
+                close() {
+                    hack.g.rotSpeed=1500
+                }
+            },
             mateSuperSize: {
-                name: "伙伴体型变大",
+                name: "伙伴体型变大一倍",
                 init() {
                     
                 },
@@ -2553,7 +2576,19 @@ function hackInit(gamecore) {
                     
                 }
             },
-
+            mateMiniSize: {
+                name: "伙伴体型缩小一半",
+                init() {
+                    
+                },
+                open() {
+                    hack.g.playerNode.getChildByName("son").scaleX /= 2;
+                    hack.g.playerNode.getChildByName("son").scaleY /= 2;
+                },
+                close() {
+                    
+                }
+            },
             /*
             noAutoRemoveBigFish: {
                 name: "不会自动移除大鱼",
