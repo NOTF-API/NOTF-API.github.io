@@ -2541,7 +2541,7 @@ function hackInit(gamecore) {
                 }
             },
             miniSize: {
-                name: "体型缩小一倍",
+                name: "体型缩小一半",
                 init() {
                     
                 },
