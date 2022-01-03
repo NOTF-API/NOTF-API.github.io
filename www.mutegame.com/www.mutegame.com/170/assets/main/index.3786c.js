@@ -2416,7 +2416,7 @@ function hackInject(gamecore) {
     }
     window.consoleDiv=document.createElement("div");
     let el = `
-    <div id="hack-panel" style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;text-align:right">bilibili妖贰伍→</div>
+    <div id="hack-panel" style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;text-align:right">bilibili妖贰伍 点击收起菜单→</div>
         <style>
             .hack-btn {
                 width: 100%;
