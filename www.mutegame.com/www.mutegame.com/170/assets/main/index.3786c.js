@@ -2416,7 +2416,7 @@ function hackInject(gamecore) {
     }
     window.consoleDiv=document.createElement("div");
     let el = `
-    <div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff">BUFF</div>
+    <div id="hack-panel" style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;text-align:right">bilibili妖贰伍→</div>
         <style>
             .hack-btn {
                 width: 100%;
@@ -2430,10 +2430,12 @@ function hackInject(gamecore) {
     })
 
     //添加创造功能按键
+    /*
     el+=`<div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff">生成</div>`
     Object.keys(hack.create).forEach((key) => {
         el+=`<button class="hack-btn" id="hack-create-${key.toString()}" onclick="hack.executeCreate('${key.toString()}',100)">${window.hack.create[key].name}</button>`
     })
+    */
     consoleDiv.innerHTML = el;
     consoleDiv.style.zIndex = 999;
     consoleDiv.style.position = "absolute"
@@ -2442,6 +2444,17 @@ function hackInject(gamecore) {
     consoleDiv.style.width = "200px";
     consoleDiv.style.height = "200px";
     document.body.appendChild(consoleDiv)
+    window.panelStatus = true;
+    document.querySelector("#hack-panel").onclick = function () {
+        const panel = window.consoleDiv
+        if (window.panelStatus === true) {
+            panel.style.left = "-180px";
+            window.panelStatus = false;
+        } else {
+            panel.style.left = "0";
+            window.panelStatus = true;
+        }
+    }
 }
 
 function hackInit(gamecore) {
