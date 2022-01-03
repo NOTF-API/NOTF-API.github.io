@@ -2416,7 +2416,7 @@ function hackInject(gamecore) {
     }
     window.consoleDiv=document.createElement("div");
     let el = `
-    <div id="hack-panel" style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;text-align:right">bilibili妖贰伍 点击收起菜单→</div>
+    <div id="hack-panel" style="margin-top:4px;background-color: rgb(55, 65, 194);font-size:16px;line-height:20px; height: 20px;color:#fff;text-align:right">点击收起菜单<<<<<<</div>
         <style>
             .hack-btn {
                 width: 100%;
@@ -2428,6 +2428,8 @@ function hackInject(gamecore) {
     Object.keys(hack.funcs).forEach((key) => {
         el+=`<button class="hack-btn" id="hack-modify-${key.toString()}" onclick="hack.executeFunc('${key.toString()}')">${window.hack.funcs[key].name}</button>`
     })
+
+    el += `<div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;font-size:12px;">喜欢请star或在b站一键三连哦<br><br><a href="https://space.bilibili.com/6454285">妖贰伍 bilibili主页</a></div>`
 
     //添加创造功能按键
     /*
@@ -2498,26 +2500,17 @@ function hackInit(gamecore) {
                 open() {
                     hack.g.speedNum *= 2;
                 },
-                close() {
-                    
-                }
             },
             badSpeed: {
                 name: "减速2倍",
                 open() {
                     hack.g.speedNum /= 2;
                 },
-                close() {
-                    
-                }
             },
             canEatAnything: {
                 name: "可以吃任何东西",
                 interval: null,
                 toggle:true,
-                init() {
-                    
-                },
                 open() {
                     this.interval=setInterval(() => {
                         hack.g.playerNode.typeID = 8;
@@ -2529,29 +2522,17 @@ function hackInit(gamecore) {
             },
             superSize: {
                 name: "体型变大一倍",
-                init() {
-                    
-                },
                 open() {
                     hack.g.playerNode.scaleX *= 2;
                     hack.g.playerNode.scaleY *= 2;
                 },
-                close() {
-
-                }
             },
             miniSize: {
                 name: "体型缩小一半",
-                init() {
-                    
-                },
                 open() {
                     hack.g.playerNode.scaleX /= 2;
                     hack.g.playerNode.scaleY /= 2;
                 },
-                close() {
-
-                }
             },
             superRotateSpeed: {
                 name: "超级旋转速度",
@@ -2565,29 +2546,17 @@ function hackInit(gamecore) {
             },
             mateSuperSize: {
                 name: "伙伴体型变大一倍",
-                init() {
-                    
-                },
                 open() {
                     hack.g.playerNode.getChildByName("son").scaleX *= 2;
                     hack.g.playerNode.getChildByName("son").scaleY *= 2;
                 },
-                close() {
-                    
-                }
             },
             mateMiniSize: {
                 name: "伙伴体型缩小一半",
-                init() {
-                    
-                },
                 open() {
                     hack.g.playerNode.getChildByName("son").scaleX /= 2;
                     hack.g.playerNode.getChildByName("son").scaleY /= 2;
                 },
-                close() {
-                    
-                }
             },
             /*
             noAutoRemoveBigFish: {
