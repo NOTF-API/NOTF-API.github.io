@@ -2476,7 +2476,7 @@ function hackInit(gamecore) {
             
             hack.status[funcName] = !hack.status[funcName]
             const btnStyle = document.querySelector("#hack-modify-" + funcName)
-            if (hack.status[funcName]) {
+            if (hack.status[funcName]||!(hack.funcs[funcName].toggle)) {
                 hack.funcs[funcName].open();
                 if (hack.funcs[funcName].toggle===true) {
                     btnStyle.style.backgroundColor = "#00ee00";
@@ -2528,35 +2528,33 @@ function hackInit(gamecore) {
                 }
             },
             superSize: {
-                name: "超级体型",
-                toggle:true,
+                name: "体型变大",
                 init() {
                     
                 },
                 open() {
-                    console.log(hack.g.playerNode)
-                    hack.g.playerNode.scaleX *= 5;
-                    hack.g.playerNode.scaleY *= 5;
+                    hack.g.playerNode.scaleX *= 2;
+                    hack.g.playerNode.scaleY *= 2;
                 },
                 close() {
 
                 }
             },
             mateSuperSize: {
-                name: "伙伴超级体型",
-                toggle:true,
+                name: "伙伴体型变大",
                 init() {
                     
                 },
                 open() {
-                    hack.g.playerNode.getChildByName("son").scaleX *= 5;
-                    hack.g.playerNode.getChildByName("son").scaleY *= 5;
+                    hack.g.playerNode.getChildByName("son").scaleX *= 2;
+                    hack.g.playerNode.getChildByName("son").scaleY *= 2;
                 },
                 close() {
-                    console.log("超级尺寸已关闭");
+                    
                 }
             },
 
+            /*
             noAutoRemoveBigFish: {
                 name: "不会自动移除大鱼",
                 toggle:true,
@@ -2636,6 +2634,7 @@ function hackInit(gamecore) {
                     hack.g.ChangeBig=this.originFunc
                 }
             }
+            */
         },
         create: {
             kedou: {
