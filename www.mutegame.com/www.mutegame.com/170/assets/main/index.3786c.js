@@ -734,7 +734,6 @@ window.__require = function e(t, a, i) {
                 var t = s.getRandomNum(0, 100, !1),
                     a = 0;
                 return 1 == e ? a = t < 50 ? 0 : t > 50 && t < 75 ? 1 : 2 : 2 == e ? a = t < 20 ? 0 : t > 25 && t < 50 ? 1 : t > 50 && t < 70 ? 2 : 3 : 3 == e ? a = t < 20 ? 0 : t < 35 ? 1 : t < 40 ? 2 : t < 70 ? 3 : 4 : 4 == e ? a = t < 20 ? 1 : t < 35 ? 2 : t < 40 ? 3 : t > 40 && t < 70 ? 4 : 5 : 5 == e ? t <= 15 ? a = 2 : t <= 30 ? a = 3 : t <= 35 ? a = 4 : t <= 60 ? a = 5 : t <= 90 ? a = 6 : this.jingyuNum < 1 && (a = 7, this.jingyuNum++) : 6 == e ? t <= 15 ? a = 3 : t <= 30 ? a = 4 : t <= 35 ? a = 5 : t <= 65 ? a = 6 : t <= 90 ? this.jingyuNum < 3 ? (a = 7, this.jingyuNum++) : a = 6 : this.jiaoNum < 2 ? (a = 8, this.jiaoNum++) : a = this.jingyuNum < 3 ? 7 : 6 : 7 == e ? t <= 20 ? a = 3 : t <= 25 ? a = 4 : t <= 30 ? a = 5 : t <= 35 ? a = 6 : this.jingyuNum < 5 ? (a = 7, this.jingyuNum++) : this.jiaoNum < 5 ? (a = 8, this.jiaoNum++) : a = s.getRandomNum(3, 4, !0) : 8 == e ? t < 40 ? a = 3 : t < 45 ? a = 4 : t <= 50 ? a = 5 : t <= 55 ? a = 6 : random <= 60 ? this.jingyuNum < 3 && (a = 7, this.jingyuNum++) : this.jiaoNum < 3 ? (a = 8, this.jiaoNum++) : a = s.getRandomNum(4, 5, !0) : a = s.getRandomNum(3, 5, !0), e >= 4 && a == e - 1 ? this.getEnemyID(e) : a
-
             },
             CreateEnemy: function (e) {
                 for (var t = 0; t < e; t++) {
@@ -2416,11 +2415,16 @@ function hackInject(gamecore) {
     }
     window.consoleDiv=document.createElement("div");
     let el = `
-    <div id="hack-panel" style="margin-top:4px;background-color: rgb(55, 65, 194);font-size:16px;line-height:20px; height: 20px;color:#fff;text-align:right">点击收起菜单<<<<<<</div>
+    <div id="hack-panel" style="background-color: rgb(55, 65, 194);font-size:16px;line-height:20px; height: 20px;color:#fff;text-align:right">点击收起菜单<<<<<<</div>
         <style>
             .hack-btn {
                 width: 100%;
                 height: 24px;
+                border:1px solid black;
+                border-radius:0;
+            }
+            .hack-btn:hover {
+                background-color:#66ccff;
             }
         </style>
     `
@@ -2429,28 +2433,29 @@ function hackInject(gamecore) {
         el+=`<button class="hack-btn" id="hack-modify-${key.toString()}" onclick="hack.executeFunc('${key.toString()}')">${window.hack.funcs[key].name}</button>`
     })
 
-    el += `<div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;font-size:12px;">喜欢请star或在b站一键三连哦<br><br><a href="https://space.bilibili.com/6454285">妖贰伍 bilibili主页</a></div>`
 
     //添加创造功能按键
-    /*
-    el+=`<div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff">生成</div>`
+    
+    el+=`<div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff">生成20个?</div>`
     Object.keys(hack.create).forEach((key) => {
-        el+=`<button class="hack-btn" id="hack-create-${key.toString()}" onclick="hack.executeCreate('${key.toString()}',100)">${window.hack.create[key].name}</button>`
+        el+=`<button class="hack-btn" id="hack-create-${key.toString()}" onclick="hack.executeCreate('${key.toString()}',20)">${window.hack.create[key].name}</button>`
     })
-    */
+
+    el += `<div style="background-color: rgb(55, 65, 194); height: 20px;color:#fff;font-size:12px;">喜欢请star或在b站一键三连哦<br><br><a href="https://space.bilibili.com/6454285">妖贰伍 bilibili主页</a></div>`
+    
     consoleDiv.innerHTML = el;
     consoleDiv.style.zIndex = 999;
     consoleDiv.style.position = "absolute"
     consoleDiv.style.left = 0;
     consoleDiv.style.top = 0;
-    consoleDiv.style.width = "200px";
-    consoleDiv.style.height = "200px";
+    consoleDiv.style.width = "160px";
+    consoleDiv.style.height = "160px";
     document.body.appendChild(consoleDiv)
     window.panelStatus = true;
     document.querySelector("#hack-panel").onclick = function () {
         const panel = window.consoleDiv
         if (window.panelStatus === true) {
-            panel.style.left = "-180px";
+            panel.style.left = "-140px";
             window.panelStatus = false;
         } else {
             panel.style.left = "0";
@@ -2462,6 +2467,13 @@ function hackInject(gamecore) {
 function hackInit(gamecore) {
     if (window.hack) {
         window.hack.g = gamecore;
+        Object.keys(hack.funcs).forEach((key) => {
+            if (hack.funcs[key].close) {
+                hack.funcs[key].close();
+                hack.status[key] = false;
+                document.querySelector("#hack-modify-" + key).style.backgroundColor = "#eeeeee";
+            }
+        })
         return;
     }
     window.hack = {
@@ -2558,6 +2570,142 @@ function hackInit(gamecore) {
                     hack.g.playerNode.getChildByName("son").scaleY /= 2;
                 },
             },
+            onlyCreateLevel8: {
+                name: "只会生成青龙",
+                toggle: true,
+                originFunc:null,
+                init() {
+                    this.originFunc=hack.g.getEnemyID
+                },
+                open() {
+                    hack.g.getEnemyID = function () {
+                        return 8;
+                    }
+                },
+                close() {
+                    if (this.originFunc !== null) {
+                         hack.g.getEnemyID = this.originFunc;
+                    }
+                   
+                }
+            },
+            onlyCreateLevel7: {
+                name: "只会生成鲸鱼(蓝色贱婢)",
+                toggle: true,
+                originFunc:null,
+                init() {
+                    this.originFunc=hack.g.getEnemyID
+                },
+                open() {
+                    hack.g.getEnemyID = function () {
+                        return 7;
+                    }
+                },
+                close() {
+                    if (this.originFunc !== null) {
+                       hack.g.getEnemyID = this.originFunc; 
+                    }
+                    
+                }
+            },
+            onlyCreateLevel6: {
+                name: "只会生成鲨鱼(紫色贱婢)",
+                toggle: true,
+                originFunc:null,
+                init() {
+                    this.originFunc=hack.g.getEnemyID
+                },
+                open() {
+                    hack.g.getEnemyID = function () {
+                        return 6;
+                    }
+                },
+                close() {
+                    if (this.originFunc !== null) {
+                        hack.g.getEnemyID = this.originFunc;
+                    }
+                    
+                }
+            },
+            onlyCreateLevel5: {
+                name: "只会生成电鳗(粉色贱婢)",
+                toggle: true,
+                originFunc:null,
+                init() {
+                    this.originFunc=hack.g.getEnemyID
+                },
+                open() {
+                    hack.g.getEnemyID = function () {
+                        return 5;
+                    }
+                },
+                close() {
+                    if (this.originFunc !== null) {
+                         hack.g.getEnemyID = this.originFunc;
+                    }
+                }
+            },
+            onlyCreateLevel4: {
+                name: "只会生成锦鲤(红色贱婢)",
+                toggle: true,
+                originFunc:null,
+                init() {
+                    this.originFunc=hack.g.getEnemyID
+                },
+                open() {
+                    hack.g.getEnemyID = function () {
+                        return 4;
+                    }
+                },
+                close() {
+                    if (this.originFunc !== null) {
+                        hack.g.getEnemyID = this.originFunc;
+                    }
+                    
+                }
+            },
+            onlyCreateLevel3: {
+                name: "只会生成金鱼",
+                toggle: true,
+                originFunc:null,
+                init() {
+                    this.originFunc=hack.g.getEnemyID
+                },
+                open() {
+                    hack.g.getEnemyID = function () {
+                        return 3;
+                    }
+                },
+                close() {
+                    if (this.originFunc !== null) {
+                        hack.g.getEnemyID = this.originFunc;
+                    }
+                    
+                }
+            },
+            enemySpeedUp: {
+                name: "敌人速度x2",
+                open() {
+                    hack.g.enemyNode.children.forEach((item) => {
+                        item.speed *= 2;
+                    })
+                },
+            },
+            enemySpeedDown: {
+                name: "敌人速度/2",
+                open() {
+                    hack.g.enemyNode.children.forEach((item) => {
+                        item.speed /= 2;
+                    })
+                },
+            },
+            addSomeSimpleEnemy: {
+                name: "增加50个小鱼小虾",
+                open() {
+                    hack.g.CreateEnemy(50);
+                },
+            }
+           
             /*
             noAutoRemoveBigFish: {
                 name: "不会自动移除大鱼",
@@ -2680,22 +2828,17 @@ function hackInit(gamecore) {
         },
         executeCreate(createKey,count) {
                 
-            var tid = hack.g.enemyPreArr[hack.create[createKey].typeID]
-            console.log("试图生成"+tid);
-            hack.g.CreateSingleEnemy(count,hack.g.playerNode.typeID)
-            /*
-                for (var t = 0; t < e; t++) {
-                    var a;
-                    a = t <= .8 * e ? 0 : t > .8 * e && t <= .9 * e ? 1 : 2;
-                    var i = cc.instantiate(this.enemyPreArr[a]);
-                    this.changeSize(i), i.typeID = a + 1;
-                    var o = this.carmeraNode.getChildByName("MoveCamera").getComponent(cc.Camera).zoomRatio;
-                    i.speed = (200 - 15 * i.typeID) / o;
-                    var n = this.getEnemyPos(i);
-                    n ? (this.enemyNode.addChild(i, 1), i.setPosition(n), i.getComponent("enemyJS").active = !0, this.enemyAction(i)) : i.destroy()
-                }
-                this.firstFlags = !1
-            */
+            var tid = hack.create[createKey].typeID
+            for (var t = 0; t < count; t++) {
+                var a = tid;
+                var i = cc.instantiate(hack.g.enemyPreArr[a]);
+                i.typeID = tid;
+                var o = hack.g.carmeraNode.getChildByName("MoveCamera").getComponent(cc.Camera).zoomRatio;
+                i.speed = (200 - 15 * i.typeID) / o;
+                var n = hack.g.getEnemyPos(i);
+                n ? (hack.g.enemyNode.addChild(i, 1), i.setPosition(n), i.getComponent("enemyJS").active = !0, hack.g.enemyAction(i)) : i.destroy()
+            }
+            hack.g.firstFlags = !1
         }
     }
 }
