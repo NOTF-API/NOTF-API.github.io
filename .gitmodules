@@ -7,3 +7,6 @@
 [submodule "QLYAudioPlayer-Demo"]
 	path = QLYAudioPlayer-Demo
 	url = https://github.com/NOTF-API/QLYAudioPlayer-Demo.git
+[submodule "summon-dragon-modified-version"]
+	path = summon-dragon-modified-version
+	url = https://github.com/NOTF-API/summon-dragon-modified-version.git
