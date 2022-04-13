@@ -4,3 +4,6 @@
 [submodule "hello-markdown"]
 	path = hello-markdown
 	url = https://github.com/NOTF-API/hello-markdown.git
+[submodule "QLYAudioPlayer-Demo"]
+	path = QLYAudioPlayer-Demo
+	url = https://github.com/NOTF-API/QLYAudioPlayer-Demo.git
