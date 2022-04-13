@@ -1,3 +1,6 @@
 [submodule "poker-web"]
 	path = poker-web
 	url = https://github.com/NOTF-API/poker-web.git
+[submodule "hello-markdown"]
+	path = hello-markdown
+	url = https://github.com/NOTF-API/hello-markdown.git
