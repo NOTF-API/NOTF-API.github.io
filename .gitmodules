@@ -1,0 +1,3 @@
+[submodule "poker-web"]
+	path = poker-web
+	url = https://github.com/NOTF-API/poker-web.git
